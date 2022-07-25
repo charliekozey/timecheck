@@ -4,6 +4,7 @@ class CreatePieces < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :category
       t.string :seller
+      t.string :photo_url
       t.decimal :price
       t.decimal :rating
       t.decimal :seller_rating
