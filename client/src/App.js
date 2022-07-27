@@ -1,40 +1,47 @@
 import React, {useState, useEffect} from "react"
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Header from './components/Header';
-import LogIn from './components/LogIn';
-import SignUp from './components/SideMenu';
 import Home from './components/Home';
-import MyPiecesDetail from './components/MyPiecesDetail';
+import SignupDesigner from './components/SignupDesigner';
+import Login from "./components/Login";
 import './App.css';
 
+
 function App() {
+  const [currentUser, setCurrentUser] = useState([]);
+
+  useEffect(()=>{
+    fetch('/users')
+    .then(res => res.json())
+    .then(data => setCurrentUser(data["users"][0]))
+      }, [])
+  
+  function onLogout() {
+    setCurrentUser(null)
+  }
+
   return (
-    <BrowserRouter>
+
       <div className="App">
         
-        <Header />
+        <Header displayName = {currentUser.display_name} />
 
         <Switch>
-          {/* <Route exact path="/login">
-            <LogIn />
+          <Route exact path="/login">
+            <Login />
           </Route>
 
-          <Route exact path="/signup">
-            <SignUp />
-          </Route> */}
-
-          {/* <Route exact path="/my-pieces">
-            <MyPiecesDetail />
-          </Route> */}
+          <Route exact path="/signup-designer">
+            <SignupDesigner />
+          </Route>
           
           <Route path="/">
-            <Home />
+            <Home currentUser={currentUser} />
           </Route>
         </Switch>
 
 
       </div>
-    </BrowserRouter>
   );
 }
 

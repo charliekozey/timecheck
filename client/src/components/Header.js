@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Header() {
+function Header({ displayName }) {
     return (
         <div className="header">
-            <div>cur8</div>
-            <div>O | Lily Tomlin | log out</div>
+            <Link to="/">
+                <h1 className="header-text">cur8</h1>
+            </Link>
+            <h2 className="header-text">logged in as: {displayName}</h2>
         </div>
     );
 }

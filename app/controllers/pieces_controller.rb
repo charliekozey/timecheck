@@ -46,6 +46,6 @@ class PiecesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def piece_params
-      params.require(:piece).permit(:name, :category, :seller, :price, :rating, :seller_rating)
+      params.require(:piece).permit(:name, :category, :seller, :price, :rating, :seller_rating, :photo_url, :listing_url)
     end
 end
